@@ -13,11 +13,9 @@ Database = mysql.connector.connect(
     password=os.getenv("PASSWORD")
 )
 
-
 cursor = Database.cursor()
 
 @app.get("/")
 async def root():
-   database.insert_row(cursor,"testp","users",{"firstname":"sami","lastname":"bcht","email":"fef@gm","password":"fr","age":"32"})
-   Database.commit()
+   database.create_table(cursor,"testp","annonces","id INT PRIMARY KEY NOT NULL","nom VARCHAR(100)","prenom VARCHAR(100)")
    return 200
