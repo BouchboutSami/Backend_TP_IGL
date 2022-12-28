@@ -6,9 +6,9 @@ load_dotenv()
 
 Database = mysql.connector.connect(
     host="localhost",
-    user=os.getenv("USER"),
+    user=os.getenv("ME"),
     password=os.getenv("PASSWORD"),
-    database="testp"
+    
 )
 
 cursor = Database.cursor()
@@ -24,6 +24,10 @@ def show_databases(cursor):
   cursor.execute("SHOW DATABASES")
   for database in cursor:
     print(database)
+    
+def drop_table(cursor,db_name,table_name):
+  use_db(cursor,db_name)
+  cursor.execute("DROP TABLE {}".format(table_name))
 
 def show_tables(cursor,db_name):
   use_db(cursor,db_name)
