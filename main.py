@@ -1,23 +1,47 @@
 from fastapi import FastAPI
 import mysql.connector
-import os
+from pydantic import BaseModel
 import database
-from dotenv import load_dotenv
 
-load_dotenv()
 app = FastAPI()
 
 Database = mysql.connector.connect(
     host="localhost",
-    user=os.getenv("USER"),
-    password=os.getenv("PASSWORD")
+    user="root",
+    password="12345678"
 )
 
+class annonce(BaseModel):
+    id_annonce : int
+    categorie:str
+    type_annonce : str
+    surface : int
+    description : str
+    prix : int
+    id_contacts : int
+    wilaya :str
+    commune :str
+    adresse :str
+    path_pics :str
 
+ 
 cursor = Database.cursor()
-
+" "
 @app.get("/")
 async def root():
-   database.insert_row(cursor,"testp","users",{"firstname":"sami","lastname":"bcht","email":"fef@gm","password":"fr","age":"32"})
-   Database.commit()
-   return 200
+    
+    return 200 
+@app.get("/annonces")
+async def get_annonce_byid():
+    database.use_db(cursor,'website')
+      
+    cursor.execute("SELECT * FROM annonces ;")
+    return cursor.fetchall()
+
+
+@app.post("/annonce")     
+async def creat_annonce(annonce:annonce):
+    database.insert_row(cursor,'website','annonces',{'categorie':annonce.categorie,'type_annonce':annonce.type_annonce ,'surface':annonce.surface,'description':annonce.description,'prix':annonce.prix,'id_contact':annonce.id_contacts,'wilaya':annonce.wilaya ,'commune':annonce.commune,'adresse':annonce.adresse,'path_pics':annonce.path_pics }
+)
+    Database.commit() 
+    return 200

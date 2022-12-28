@@ -1,14 +1,13 @@
 import mysql.connector
-import os
-from dotenv import load_dotenv
 
-load_dotenv()
+
+
 
 Database = mysql.connector.connect(
     host="localhost",
-    user=os.getenv("USER"),
-    password=os.getenv("PASSWORD"),
-    database="testp"
+    user="root",
+    password="12345678",
+  
 )
 
 cursor = Database.cursor()
@@ -51,6 +50,6 @@ def insert_row(cursor,db_name,table_name,valeurs):
   nvattributs = nvattributs[:-2]+")"
   nb_val = "%s, "*len(valeurs)
   nb_val = "("+nb_val[:-2]+")"
-  sql = "INSERT INTO {} {} VALUES {}".format(table_name,nvattributs,nb_val)
-  print(sql,newtuple)
+  sql = "INSERT INTO {} {} VALUES {} ".format(table_name,nvattributs,nb_val)
+  
   cursor.execute(sql,newtuple)
