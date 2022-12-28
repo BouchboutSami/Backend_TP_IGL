@@ -53,3 +53,17 @@ def insert_row(cursor,db_name,table_name,valeurs):
   sql = "INSERT INTO {} {} VALUES {} ".format(table_name,nvattributs,nb_val)
   
   cursor.execute(sql,newtuple)
+#used to create queries using a filter
+def recherche_filter(cursor,db_name,table_name,column,filter): 
+   use_db(cursor,db_name)
+   
+   sql = "SELECT * FROM {} WHERE {} = \"{}\" ;".format(table_name,column,filter)
+   
+   cursor.execute(sql)
+   
+def recherche_filter_date(cursor,db_name,table_name,column,date1,date2):
+  use_db(cursor,db_name)
+  sql ="SELECT * FROM {} WHERE {} <  \"{}\" AND    {} > \"{}\"  ;".format(table_name,column,date1,column,date2)
+  print(sql)
+  cursor.execute(sql)
+  
