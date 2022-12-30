@@ -67,3 +67,10 @@ def recherche_filter_date(cursor,db_name,table_name,column,date1,date2):
   print(sql)
   cursor.execute(sql)
   
+def delete_data(cursor,db_name,table_name,column,filter):
+  use_db(cursor,db_name)
+  sql ="DELETE  FROM {} WHERE {} = {} ;".format(table_name,column,filter)
+  print(sql)
+  cursor.execute(sql)
+  
+  Database.commit()
