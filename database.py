@@ -52,5 +52,8 @@ def insert_row(cursor,db_name,table_name,valeurs):
   nb_val = "%s, "*len(valeurs)
   nb_val = "("+nb_val[:-2]+")"
   sql = "INSERT INTO {} {} VALUES {}".format(table_name,nvattributs,nb_val)
-  print(sql,newtuple)
   cursor.execute(sql,newtuple)
+  
+def Select_everything(cursor,db_name,table_name):
+  use_db(cursor,db_name)
+  cursor.execute("SELECT * FROM {}".format(table_name))

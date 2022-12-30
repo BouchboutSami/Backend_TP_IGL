@@ -17,5 +17,18 @@ cursor = Database.cursor()
 
 @app.get("/")
 async def root():
-   database.create_table(cursor,"testp","annonces","id INT PRIMARY KEY NOT NULL","nom VARCHAR(100)","prenom VARCHAR(100)")
-   return 200
+    return 200
+
+@app.get("/login") 
+async def login(email_user:str,password:str):
+    cursor.execute("USE testp")
+    commande= "SELECT * FROM users WHERE email='{}'".format(email_user)
+    cursor.execute(commande)
+    myresult=cursor.fetchone()
+    print(myresult[3])
+    if(myresult==None):
+        return "Wrong email"
+    elif (myresult[4] != password):
+        return "Wrong password"
+    else:
+        return "Acces autorisé"
