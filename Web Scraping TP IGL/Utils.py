@@ -43,3 +43,8 @@ def GetPrice(ancienPrix:str):
 def getURL(styleimage:str):
   elements = styleimage.split('"')
   return elements[1]
+
+def wilayaFromCommune(commune:str):
+  for x in dz_data:
+    if (x["commune"].lower() == commune.lower()):
+      return x["wilaya"]

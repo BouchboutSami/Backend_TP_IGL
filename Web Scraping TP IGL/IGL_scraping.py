@@ -49,14 +49,18 @@ def ScrapOuedkniss(nb_pages:int,wilayas:list[int]):
         if spec.text == "Superficie":
           superficie=(spec.parent.find("span",{"class":"mr-1 mb-1"})).text
         if spec.text == " Date " :
-          date = (spec.findNext("div",{"class":"col-sm-9 col-7"})).text
+          date = ((spec.findNext("div",{"class":"col-sm-9 col-7"})).text)[1:-1]
       type_annonce=categorie_et_type[-2].text if categorie_et_type[1] is not None else "Undefined"
       categorie_annonce = categorie_et_type[-1].text if categorie_et_type[2] is not None else "Undefined"
       description = ((doc_annonce.find("div",{"class":"__description mb-2"})).text)[12:]
       image_path = getURL((doc_annonce.find("div",{"class":"v-image__image v-image__image--cover"}))["style"])
+      wilaya_commune = (doc_annonce.find("div",{"py-2 text-wrap text-capitalize d-flex flex-wrap flex-gap-2"})).text.split("-")
+      wilaya= wilaya_commune[0][1:-1]
+      commune = wilaya_commune[1][1:-1]
     except:
       print("not found")
       continue
+    print("found")
     prix=""
     if (prix_num is not None):
       prix_unite = doc_annonce.find("span",{"dir":"ltr"}).find_next("span")
@@ -64,9 +68,11 @@ def ScrapOuedkniss(nb_pages:int,wilayas:list[int]):
       prix = GetPrice(prix)
     else:
       prix = 0
-    print(prix,categorie_annonce)
-    
-ScrapOuedkniss(1,[16])
+    resultat.append({"categorie":categorie_annonce,"type":type_annonce,"superficie":superficie,"description":description,"prix":prix,"id_contact":None,"wilaya":wilaya,"commune":commune,"image_path":image_path,"titre":title,"date_publication":date})
+ print(len(resultat))
+ print(resultat[0],resultat[1],end="\n")
+  
+ScrapOuedkniss(2,[16])
   
    
 

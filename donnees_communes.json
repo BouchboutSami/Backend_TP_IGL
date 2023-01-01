@@ -385,7 +385,7 @@
   },
   {
     "id": 81,
-    "commune": "Oued M zi",
+    "commune": "Oued Mzi",
     "wilaya_code": "03",
     "wilaya": "Laghouat"
   },
@@ -553,7 +553,7 @@
   },
   {
     "id": 93,
-    "commune": "Ain M lila",
+    "commune": "Ain Mlila",
     "wilaya_code": "04",
     "wilaya": "Oum El Bouaghi"
   },
@@ -913,7 +913,7 @@
   },
   {
     "id": 149,
-    "commune": "M Doukal",
+    "commune": "MDoukal",
     "wilaya_code": "05",
     "wilaya": "Batna"
   },
@@ -1237,7 +1237,7 @@
   },
   {
     "id": 208,
-    "commune": "M cisna",
+    "commune": "Mcisna",
     "wilaya_code": "06",
     "wilaya": "Bejaia"
   },
@@ -1387,7 +1387,7 @@
   },
   {
     "id": 254,
-    "commune": "M lili",
+    "commune": "Mlili",
     "wilaya_code": "07",
     "wilaya": "Biskra"
   },
@@ -1447,7 +1447,7 @@
   },
   {
     "id": 251,
-    "commune": "M chouneche",
+    "commune": "Mchouneche",
     "wilaya_code": "07",
     "wilaya": "Biskra"
   },
@@ -1777,7 +1777,7 @@
   },
   {
     "id": 339,
-    "commune": "M Chedallah",
+    "commune": "MChedallah",
     "wilaya_code": "10",
     "wilaya": "Bouira"
   },
@@ -2233,13 +2233,13 @@
   },
   {
     "id": 426,
-    "commune": "M sirda Fouaga",
+    "commune": "Msirda Fouaga",
     "wilaya_code": "13",
     "wilaya": "Tlemcen"
   },
   {
     "id": 425,
-    "commune": "Marsa Ben M hidi",
+    "commune": "Marsa Ben Mhidi",
     "wilaya_code": "13",
     "wilaya": "Tlemcen"
   },
@@ -2983,7 +2983,7 @@
   },
   {
     "id": 536,
-    "commune": "M kira",
+    "commune": "Mkira",
     "wilaya_code": "15",
     "wilaya": "Tizi Ouzou"
   },
@@ -3337,7 +3337,7 @@
   },
   {
     "id": 605,
-    "commune": "Sidi M hamed",
+    "commune": "Sidi Mhamed",
     "wilaya_code": "16",
     "wilaya": "Alger"
   },
@@ -3505,7 +3505,7 @@
   },
   {
     "id": 637,
-    "commune": "M liliha",
+    "commune": "Mliliha",
     "wilaya_code": "17",
     "wilaya": "Djelfa"
   },
@@ -4663,7 +4663,7 @@
   },
   {
     "id": 810,
-    "commune": "M cid",
+    "commune": "Mcid",
     "wilaya_code": "22",
     "wilaya": "Sidi Bel Abbes"
   },
@@ -5215,7 +5215,7 @@
   },
   {
     "id": 934,
-    "commune": "M fatha",
+    "commune": "Mfatha",
     "wilaya_code": "26",
     "wilaya": "Medea"
   },
@@ -5775,283 +5775,283 @@
     "id": 1008,
     "commune": "Chellal",
     "wilaya_code": "28",
-    "wilaya": "M Sila"
+    "wilaya": "MSila"
   },
   {
     "id": 1028,
     "commune": "Ouled Madhi",
     "wilaya_code": "28",
-    "wilaya": "M Sila"
+    "wilaya": "MSila"
   },
   {
     "id": 1014,
     "commune": "Khettouti Sed El Jir",
     "wilaya_code": "28",
-    "wilaya": "M Sila"
+    "wilaya": "MSila"
   },
   {
     "id": 1000,
     "commune": "Belaiba",
     "wilaya_code": "28",
-    "wilaya": "M Sila"
+    "wilaya": "MSila"
   },
   {
     "id": 1004,
     "commune": "Berhoum",
     "wilaya_code": "28",
-    "wilaya": "M Sila"
+    "wilaya": "MSila"
   },
   {
     "id": 1009,
     "commune": "Dehahna",
     "wilaya_code": "28",
-    "wilaya": "M Sila"
+    "wilaya": "MSila"
   },
   {
     "id": 1018,
     "commune": "Magra",
     "wilaya_code": "28",
-    "wilaya": "M Sila"
+    "wilaya": "MSila"
   },
   {
     "id": 1002,
     "commune": "Beni Ilmane",
     "wilaya_code": "28",
-    "wilaya": "M Sila"
+    "wilaya": "MSila"
   },
   {
     "id": 1007,
     "commune": "Bouti Sayeh",
     "wilaya_code": "28",
-    "wilaya": "M Sila"
+    "wilaya": "MSila"
   },
   {
     "id": 1033,
     "commune": "Sidi Aissa",
     "wilaya_code": "28",
-    "wilaya": "M Sila"
+    "wilaya": "MSila"
   },
   {
     "id": 995,
     "commune": "Ain El Hadjel",
     "wilaya_code": "28",
-    "wilaya": "M Sila"
+    "wilaya": "MSila"
   },
   {
     "id": 1035,
     "commune": "Sidi Hadjeres",
     "wilaya_code": "28",
-    "wilaya": "M Sila"
+    "wilaya": "MSila"
   },
   {
     "id": 1006,
     "commune": "Bou Saada",
     "wilaya_code": "28",
-    "wilaya": "M Sila"
+    "wilaya": "MSila"
   },
   {
     "id": 1011,
     "commune": "El Hamel",
     "wilaya_code": "28",
-    "wilaya": "M Sila"
+    "wilaya": "MSila"
   },
   {
     "id": 1032,
     "commune": "Oulteme",
     "wilaya_code": "28",
-    "wilaya": "M Sila"
+    "wilaya": "MSila"
   },
   {
     "id": 1003,
     "commune": "Benzouh",
     "wilaya_code": "28",
-    "wilaya": "M Sila"
+    "wilaya": "MSila"
   },
   {
     "id": 1030,
     "commune": "Ouled Sidi Brahim",
     "wilaya_code": "28",
-    "wilaya": "M Sila"
+    "wilaya": "MSila"
   },
   {
     "id": 1034,
     "commune": "Sidi Ameur",
     "wilaya_code": "28",
-    "wilaya": "M Sila"
+    "wilaya": "MSila"
   },
   {
     "id": 1039,
     "commune": "Tamsa",
     "wilaya_code": "28",
-    "wilaya": "M Sila"
+    "wilaya": "MSila"
   },
   {
     "id": 1001,
     "commune": "Ben Srour",
     "wilaya_code": "28",
-    "wilaya": "M Sila"
+    "wilaya": "MSila"
   },
   {
     "id": 1022,
     "commune": "Mohamed Boudiaf",
     "wilaya_code": "28",
-    "wilaya": "M Sila"
+    "wilaya": "MSila"
   },
   {
     "id": 1031,
     "commune": "Ouled Slimane",
     "wilaya_code": "28",
-    "wilaya": "M Sila"
+    "wilaya": "MSila"
   },
   {
     "id": 1041,
     "commune": "Zarzour",
     "wilaya_code": "28",
-    "wilaya": "M Sila"
+    "wilaya": "MSila"
   },
   {
     "id": 996,
     "commune": "Ain El Melh",
     "wilaya_code": "28",
-    "wilaya": "M Sila"
+    "wilaya": "MSila"
   },
   {
     "id": 997,
     "commune": "Ain Fares",
     "wilaya_code": "28",
-    "wilaya": "M Sila"
+    "wilaya": "MSila"
   },
   {
     "id": 999,
     "commune": "Ain Rich",
     "wilaya_code": "28",
-    "wilaya": "M Sila"
+    "wilaya": "MSila"
   },
   {
     "id": 1005,
     "commune": "Bir Foda",
     "wilaya_code": "28",
-    "wilaya": "M Sila"
+    "wilaya": "MSila"
   },
   {
     "id": 1036,
-    "commune": "Sidi M hamed",
+    "commune": "Sidi Mhamed",
     "wilaya_code": "28",
-    "wilaya": "M Sila"
+    "wilaya": "MSila"
   },
   {
     "id": 1020,
     "commune": "Medjedel",
     "wilaya_code": "28",
-    "wilaya": "M Sila"
+    "wilaya": "MSila"
   },
   {
     "id": 1021,
     "commune": "Menaa",
     "wilaya_code": "28",
-    "wilaya": "M Sila"
+    "wilaya": "MSila"
   },
   {
     "id": 1010,
     "commune": "Djebel Messaad",
     "wilaya_code": "28",
-    "wilaya": "M Sila"
+    "wilaya": "MSila"
   },
   {
     "id": 1037,
     "commune": "Slim",
     "wilaya_code": "28",
-    "wilaya": "M Sila"
+    "wilaya": "MSila"
   },
   {
     "id": 1023,
-    "commune": "M sila",
+    "commune": "Msila",
     "wilaya_code": "28",
-    "wilaya": "M Sila"
+    "wilaya": "MSila"
   },
   {
     "id": 1013,
     "commune": "Hammam Dalaa",
     "wilaya_code": "28",
-    "wilaya": "M Sila"
+    "wilaya": "MSila"
   },
   {
     "id": 1025,
     "commune": "Ouanougha",
     "wilaya_code": "28",
-    "wilaya": "M Sila"
+    "wilaya": "MSila"
   },
   {
     "id": 1029,
     "commune": "Ouled Mansour",
     "wilaya_code": "28",
-    "wilaya": "M Sila"
+    "wilaya": "MSila"
   },
   {
     "id": 1040,
     "commune": "Tarmount",
     "wilaya_code": "28",
-    "wilaya": "M Sila"
+    "wilaya": "MSila"
   },
   {
     "id": 1016,
     "commune": "Maadid",
     "wilaya_code": "28",
-    "wilaya": "M Sila"
+    "wilaya": "MSila"
   },
   {
     "id": 1024,
-    "commune": "M tarfa",
+    "commune": "Mtarfa",
     "wilaya_code": "28",
-    "wilaya": "M Sila"
+    "wilaya": "MSila"
   },
   {
     "id": 1017,
     "commune": "Maarif",
     "wilaya_code": "28",
-    "wilaya": "M Sila"
+    "wilaya": "MSila"
   },
   {
     "id": 1027,
     "commune": "Ouled Derradj",
     "wilaya_code": "28",
-    "wilaya": "M Sila"
+    "wilaya": "MSila"
   },
   {
     "id": 1038,
     "commune": "Souamaa",
     "wilaya_code": "28",
-    "wilaya": "M Sila"
+    "wilaya": "MSila"
   },
   {
     "id": 1012,
     "commune": "El Houamed",
     "wilaya_code": "28",
-    "wilaya": "M Sila"
+    "wilaya": "MSila"
   },
   {
     "id": 1015,
     "commune": "Khoubana",
     "wilaya_code": "28",
-    "wilaya": "M Sila"
+    "wilaya": "MSila"
   },
   {
     "id": 1019,
-    "commune": "M cif",
+    "commune": "Mcif",
     "wilaya_code": "28",
-    "wilaya": "M Sila"
+    "wilaya": "MSila"
   },
   {
     "id": 998,
     "commune": "Ain Khadra",
     "wilaya_code": "28",
-    "wilaya": "M Sila"
+    "wilaya": "MSila"
   },
   {
     "id": 1026,
     "commune": "Ouled Addi Guebala",
     "wilaya_code": "28",
-    "wilaya": "M Sila"
+    "wilaya": "MSila"
   },
   {
     "id": 1075,
@@ -6805,7 +6805,7 @@
   },
   {
     "id": 1179,
-    "commune": "El M hir",
+    "commune": "El Mhir",
     "wilaya_code": "34",
     "wilaya": "Bordj Bou Arreridj"
   },
@@ -7147,7 +7147,7 @@
   },
   {
     "id": 1233,
-    "commune": "Ben M Hidi",
+    "commune": "Ben MHidi",
     "wilaya_code": "36",
     "wilaya": "El Tarf"
   },
@@ -7609,7 +7609,7 @@
   },
   {
     "id": 1323,
-    "commune": "M toussa",
+    "commune": "Mtoussa",
     "wilaya_code": "40",
     "wilaya": "Khenchela"
   },
@@ -7627,7 +7627,7 @@
   },
   {
     "id": 1322,
-    "commune": "M sara",
+    "commune": "Msara",
     "wilaya_code": "40",
     "wilaya": "Khenchela"
   },
@@ -7783,7 +7783,7 @@
   },
   {
     "id": 1338,
-    "commune": "M daourouche",
+    "commune": "Mdaourouche",
     "wilaya_code": "41",
     "wilaya": "Souk Ahras"
   },
@@ -8731,7 +8731,7 @@
   },
   {
     "id": 1537,
-    "commune": "Sidi M hamed Benaouda",
+    "commune": "Sidi Mhamed Benaouda",
     "wilaya_code": "48",
     "wilaya": "Relizane"
   },
@@ -8851,7 +8851,7 @@
   },
   {
     "id": 1536,
-    "commune": "Sidi M hamed Benali",
+    "commune": "Sidi Mhamed Benali",
     "wilaya_code": "48",
     "wilaya": "Relizane"
   },
@@ -9157,7 +9157,7 @@
   },
   {
     "id": 1098,
-    "commune": "M naguer",
+    "commune": "Mnaguer",
     "wilaya_code": "55",
     "wilaya": "Touggourt"
   },
@@ -9193,7 +9193,7 @@
   },
   {
     "id": 1293,
-    "commune": "M rara",
+    "commune": "Mrara",
     "wilaya_code": "57",
     "wilaya": "El Meghaier"
   },
@@ -9211,7 +9211,7 @@
   },
   {
     "id": 1284,
-    "commune": "El M ghaier",
+    "commune": "El Mghaier",
     "wilaya_code": "57",
     "wilaya": "El Meghaier"
   },
