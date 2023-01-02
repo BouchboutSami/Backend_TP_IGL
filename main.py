@@ -1,8 +1,10 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Query
 import mysql.connector
 import os
 import database
 from dotenv import load_dotenv
+from typing import List
+from Web_Scraping_TP_IGL.IGL_scraping import *
 
 load_dotenv()
 app = FastAPI()
@@ -32,3 +34,8 @@ async def login(email_user:str,password:str):
         return "Wrong password"
     else:
         return "Acces autorisé"
+    
+@app.get("/scrape")
+async def scrape(nb_pages:int,wilayas:List[int] = Query(None)):
+    result = ScrapOuedkniss(nb_pages,wilayas)
+    return result
