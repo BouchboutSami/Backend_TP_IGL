@@ -39,7 +39,7 @@ def ScrapOuedkniss(nb_pages:int,wilayas:list[int]):
     try:
       wait = WebDriverWait(driver, 15)
       wait.until(EC.presence_of_element_located((By.TAG_NAME,"h1")))
-      time.sleep(3)
+      time.sleep(2)
       driver.execute_script("window.scrollTo(0, 1000)")
       time.sleep(1)
       html_annonce = driver.page_source
@@ -60,6 +60,7 @@ def ScrapOuedkniss(nb_pages:int,wilayas:list[int]):
       wilaya_commune = (doc_annonce.find("div",{"py-2 text-wrap text-capitalize d-flex flex-wrap flex-gap-2"})).text.split("-")
       wilaya= wilaya_commune[0][1:-1]
       commune = wilaya_commune[1][1:-1]
+      num_tel = ((doc_annonce.find("a",{"class":"primary v-chip v-chip--clickable v-chip--link v-chip--no-color theme--dark v-size--default"}))["href"])[4:]
     except:
       print("not found")
       continue
@@ -71,7 +72,7 @@ def ScrapOuedkniss(nb_pages:int,wilayas:list[int]):
       prix = GetPrice(prix)
     else:
       prix = 0
-    resultat.append({"categorie":categorie_annonce,"type":type_annonce,"superficie":superficie,"description":description,"prix":prix,"id_contact":None,"wilaya":wilaya,"commune":commune,"image_path":image_path,"titre":title,"date_publication":date})
+    resultat.append({"categorie":categorie_annonce,"type":type_annonce,"superficie":superficie,"description":description,"prix":prix,"id_contact":None,"wilaya":wilaya,"commune":commune,"image_path":image_path,"titre":title,"date_publication":date,"telephone":num_tel})
  return resultat
 
 
