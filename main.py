@@ -2,6 +2,8 @@ from fastapi import FastAPI
 import mysql.connector
 from pydantic import BaseModel
 import database
+from models.annonces import *
+from models.messages import *
 from datetime import datetime
 app = FastAPI()
 
@@ -10,29 +12,6 @@ Database = mysql.connector.connect(
     user="root",
     password="12345678"
 )
-
-class annonce(BaseModel):
-    id_annonce : int
-    categorie:str
-    type_annonce : str
-    surface : int
-    description : str
-    prix : int
-    id_contacts : int
-    wilaya :str
-    commune :str
-    adresse :str
-    path_pics :str
-    titre : str
-
-class messagerie(BaseModel):
-   id_annonce:int 
-   id_sender : int
-   id_receiver : int
-   msg_content : str
-   
-
-
 
  
 cursor = Database.cursor()
@@ -57,7 +36,6 @@ async def get_all_annonce_of_utilisateur(id_contact:int):
 @app.get("/annonces_motcle/{mot_cle}")
 async def get_annonces_by_mot_cle(mot_cle:str):
     database.use_db(cursor,'website')
-    sql1 ="SELECT * FROM annonces WHERE  titre LIKE \"%{}%\" ".format(mot_cle)
     sql = "SELECT * FROM annonces WHERE  titre LIKE  \"%{0}%\" OR categorie LIKE \"%{0}%\" OR type_annonce LIKE \"%{0}%\" OR description LIKE \"%{0}%\" OR wilaya LIKE \"%{0}%\"  OR commune LIKE \"%{0}%\" OR adresse LIKE \"%{0}%\" ;".format(mot_cle)
     cursor.execute(sql)
     
