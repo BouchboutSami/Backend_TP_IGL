@@ -1,4 +1,6 @@
 from bs4 import BeautifulSoup
+import requests
+import base64
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
@@ -72,7 +74,7 @@ def ScrapOuedkniss(nb_pages:int,wilayas:list[int]):
       prix = GetPrice(prix)
     else:
       prix = 0
-    resultat.append({"categorie":categorie_annonce,"type":type_annonce,"superficie":superficie,"description":description,"prix":prix,"id_contact":None,"wilaya":wilaya,"commune":commune,"image_path":image_path,"titre":title,"date_publication":date,"telephone":num_tel})
+    resultat.append({"categorie":categorie_annonce,"type_annonce":type_annonce,"superficie":superficie,"description":description,"prix":prix,"id_contact":None,"wilaya":wilaya,"commune":commune,"image":(base64.b64encode(requests.get(image_path).content).decode()).hex(),"titre":title,"date_publication":date,"telephone":num_tel})
  return resultat
 
 
