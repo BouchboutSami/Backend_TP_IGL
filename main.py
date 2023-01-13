@@ -78,17 +78,20 @@ async def login(email_user:str,password:str):
 async def scrap(nb_pages:int,wilayas:List[int] = Query(None)):
     result = ScrapOuedkniss(nb_pages,wilayas)
     for annonce in result:
+        print(type(annonce["image"]))
         try:
          database.insert_row(cursor,"testp","annonces",annonce)
+         print("inserted")
          Database.commit()
         except:
+            print("Error")
             continue
     return result
 
 @app.post("/DeposerAnnonce/")
 async def DeposerAnnonce(annoncerecu:annonce):
-    print(annoncerecu)
     create_annonce(annoncerecu)
+    print("inserted")
     Database.commit()
     return 202
         

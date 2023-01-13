@@ -41,18 +41,24 @@ def add_column(cursor,db_name,table_name,attribut):
   cursor.execute("ALTER TABLE {} ADD COLUMN {}".format(table_name,attribut))
 
 def insert_row(cursor,db_name,table_name,valeurs):
-  use_db(cursor,db_name)
-  nvattributs="("
-  oldtuple=()
-  for key in valeurs:
-    nvattributs += key+", "
-    newtuple = oldtuple + (valeurs[key],)
-    oldtuple = newtuple
-  nvattributs = nvattributs[:-2]+")"
-  nb_val = "%s, "*len(valeurs)
-  nb_val = "("+nb_val[:-2]+")"
-  sql = "INSERT INTO {} {} VALUES {}".format(table_name,nvattributs,nb_val)
-  cursor.execute(sql,newtuple)
+  try:
+    use_db(cursor,db_name)
+    nvattributs="("
+    oldtuple=()
+    for key in valeurs:
+      nvattributs += key+", "
+      newtuple = oldtuple + (valeurs[key],)
+      oldtuple = newtuple
+    nvattributs = nvattributs[:-2]+")"
+    nb_val = "%s, "*len(valeurs)
+    nb_val = "("+nb_val[:-2]+")"
+    sql = "INSERT INTO {} {} VALUES {}".format(table_name,nvattributs,nb_val)
+    cursor.execute(sql,newtuple)
+    cursor.close()
+    Database.close()
+  except:
+    print("error")
+    
   
 def Select_everything(cursor,db_name,table_name):
   use_db(cursor,db_name)
