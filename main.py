@@ -2,7 +2,7 @@ from fastapi import FastAPI, Query
 from fastapi.middleware.cors import CORSMiddleware
 import mysql.connector
 import os
-from pydantic import BaseModel, ValidationError
+from pydantic import BaseModel
 import database
 from dotenv import load_dotenv
 from typing import List
@@ -16,6 +16,7 @@ origins = [
     "https://localhost.tiangolo.com",
     "http://localhost",
     "http://localhost:8080",
+    "http://localhost:3001",
     "http://localhost:3000"
 ]
 
@@ -55,7 +56,6 @@ def create_annonce(annonce):
  )  
 
 
-
 @app.get("/")
 async def root():
     return 200
@@ -90,8 +90,9 @@ async def scrap(nb_pages:int,wilayas:List[int] = Query(None)):
 
 @app.post("/DeposerAnnonce/")
 async def DeposerAnnonce(annoncerecu:annonce):
+    print("debut insertion")
     create_annonce(annoncerecu)
-    print("inserted")
+    print("fin insertion")
     Database.commit()
     return 202
         
