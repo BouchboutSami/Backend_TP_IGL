@@ -12,16 +12,14 @@ f = open("donnees_communes.json")
 dz_data = json.loads(f.read())
 import time
 
-def ScrapOuedkniss(nb_pages:int,wilayas:list[int]):
+def ScrapOuedkniss(wilaya):
+ nb_pages=1 
  resultat=[]
- filtre_wilaya = wilayas
  for page in range(1,nb_pages+1):
    url = "https://www.ouedkniss.com/immobilier/{}?".format(str(page))
-   if (filtre_wilaya):
-    for wilaya in filtre_wilaya:
-      filtre= "regionIds={}-{}&".format(wilayaString(wilaya),wilaya)
-      url += filtre 
-    url = url[:-1]
+   filtre= "regionIds={}&".format(wilaya)
+   url += filtre 
+   url = url[:-1]
    print(url)
    driver = webdriver.Chrome("./chromedriver")
    driver.set_window_size(1920, 1080)
@@ -30,11 +28,12 @@ def ScrapOuedkniss(nb_pages:int,wilayas:list[int]):
    for timer in range(0,8):
       driver.execute_script("window.scrollTo(0, "+str(y)+")")
       y += 1000  
-      time.sleep(1)
-           
+      time.sleep(1)     
    html = driver.page_source
    doc = BeautifulSoup(html,"html.parser")
    content = doc.find_all("a",{"class":"d-flex flex-column flex-grow-1 v-card v-card--link v-sheet o-announ-card-content theme--dark"})
+   if (len(content)==0):
+     return "Erreur lors du Web Scraping vérifiez que votre connexion Internet"
    links=[]
    for link in content:
     links.append("https://ouedkniss.com"+link["href"])
@@ -45,7 +44,7 @@ def ScrapOuedkniss(nb_pages:int,wilayas:list[int]):
       superficie=0
       wait = WebDriverWait(driver, 15)
       wait.until(EC.presence_of_element_located((By.TAG_NAME,"h1")))
-      time.sleep(2)
+      time.sleep(3)
       driver.execute_script("window.scrollTo(0, 1000)")
       time.sleep(1)
       html_annonce = driver.page_source
@@ -95,7 +94,7 @@ def wilayaString(codeWilaya):
   for x in dz_data:
     if( x["wilaya_code"] == str(codeWilaya)):
       return x["wilaya"]
-  return "Invalid"
+  return ""
 
 def GetPrice(ancienPrix:str):
   remplacements = {"Millions":"10000","Milliards":"10000000","DA":"1","m²":"1","/":"1"," ":"1","000":"1000"}

@@ -28,6 +28,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+class Wilaya(BaseModel):
+    wilaya: int
+
 class annonce(BaseModel):
     categorie:str
     type_annonce : str
@@ -58,7 +61,7 @@ def create_annonce(annonce):
 
 @app.get("/")
 async def root():
-    return 200
+    return "data from backend"
 
 @app.get("/login") 
 async def login(email_user:str,password:str):
@@ -74,11 +77,12 @@ async def login(email_user:str,password:str):
     else:
         return "Acces autorisé"
     
-@app.post("/scrap")
-async def scrap(nb_pages:int,wilayas:List[int] = Query(None)):
-    result = ScrapOuedkniss(nb_pages,wilayas)
+@app.post("/scrap/")
+async def scrap(wilaya:Wilaya):
+    print("hhh",wilaya.wilaya)
+    result = ScrapOuedkniss(wilaya.wilaya)
+    print("rrr",len(result))
     for annonce in result:
-        print(type(annonce["image"]))
         try:
          database.insert_row(cursor,"testp","annonces",annonce)
          print("inserted")
@@ -91,6 +95,7 @@ async def scrap(nb_pages:int,wilayas:List[int] = Query(None)):
 @app.post("/DeposerAnnonce/")
 async def DeposerAnnonce(annoncerecu:annonce):
     print("debut insertion")
+    print(annoncerecu)
     create_annonce(annoncerecu)
     print("fin insertion")
     Database.commit()

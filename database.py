@@ -54,8 +54,6 @@ def insert_row(cursor,db_name,table_name,valeurs):
     nb_val = "("+nb_val[:-2]+")"
     sql = "INSERT INTO {} {} VALUES {}".format(table_name,nvattributs,nb_val)
     cursor.execute(sql,newtuple)
-    cursor.close()
-    Database.close()
   except:
     print("error")
     
