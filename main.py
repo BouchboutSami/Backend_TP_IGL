@@ -28,8 +28,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-class Wilaya(BaseModel):
-    wilaya: int
+class number(BaseModel):
+    val: int
 
 class annonce(BaseModel):
     categorie:str
@@ -44,6 +44,11 @@ class annonce(BaseModel):
     titre : str
     date_publication:str
     telephone:int
+    
+class user(BaseModel):
+    username:str
+    email:str
+    password:str
 
 Database = mysql.connector.connect(
     host="localhost",
@@ -78,9 +83,9 @@ async def login(email_user:str,password:str):
         return "Acces autorisé"
     
 @app.post("/scrap/")
-async def scrap(wilaya:Wilaya):
-    print("hhh",wilaya.wilaya)
-    result = ScrapOuedkniss(wilaya.wilaya)
+async def scrap(wilaya:number):
+    print("hhh",wilaya.val)
+    result = ScrapOuedkniss(wilaya.val)
     print("rrr",len(result))
     for annonce in result:
         try:
@@ -100,6 +105,37 @@ async def DeposerAnnonce(annoncerecu:annonce):
     print("fin insertion")
     Database.commit()
     return 202
+
+
+@app.post("/Signup")
+async def CreateUser(newUser:user):
+    database.insert_row(cursor,"testp","users",{"username":newUser.username,"email":newUser.email,"password":newUser.password})
+    Database.commit()
+    cursor.execute("SELECT * FROM testp.users WHERE email = '{}'".format(newUser.email)) 
+    return cursor.fetchone()
+
+@app.post("/UserExists")
+async def UserExists(newUser:user):
+    cursor.execute("SELECT * FROM testp.users WHERE email = '{}' AND password = '{}'".format(newUser.email, newUser.password))
+    result = cursor.fetchone()
+    if (result == None):
+        return False
+    return True
+
+
+@app.post("/getUserbyID")
+async def GetuserByid(User:user):
+    cursor.execute("SELECT id FROM testp.users WHERE email = '{}' AND password = '{}'".format(User.email, User.password))
+    result = cursor.fetchone()
+    return result
+
+
+@app.post("/getAnnonceid")
+async def getannoncebyID(id:number):
+    print("hello")
+    cursor.execute(f"SELECT * FROM testp.annonces WHERE id_annonce= {id.val}")
+    result = cursor.fetchone()
+    return result
         
         
     
