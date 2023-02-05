@@ -6,7 +6,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from mysql.connector import Binary
+from selenium.webdriver.chrome.options import Options
 import json
 f = open("donnees_communes.json")
 dz_data = json.loads(f.read())
@@ -16,12 +16,14 @@ def ScrapOuedkniss(wilaya):
  nb_pages=1 
  resultat=[]
  for page in range(1,nb_pages+1):
+   options = Options()
+   options.add_argument('--force-dark-mode')
    url = "https://www.ouedkniss.com/immobilier/{}?".format(str(page))
    filtre= "regionIds={}&".format(wilaya)
    url += filtre 
    url = url[:-1]
    print(url)
-   driver = webdriver.Chrome("./chromedriver")
+   driver = webdriver.Chrome("./chromedriver",options=options)
    driver.set_window_size(1920, 1080)
    driver.get(url)
    y = 1000
@@ -38,7 +40,7 @@ def ScrapOuedkniss(wilaya):
    for link in content:
     links.append("https://ouedkniss.com"+link["href"])
    print(len(links))
-   for link in range(3):
+   for link in range(2):
     driver.get(links[link])
     try:
       superficie=0
