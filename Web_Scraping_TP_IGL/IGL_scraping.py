@@ -26,6 +26,17 @@ def ScrapOuedkniss(wilaya):
    driver = webdriver.Chrome("./chromedriver",options=options)
    driver.set_window_size(1920, 1080)
    driver.get(url)
+  #  wait = WebDriverWait(driver, 15)
+  #  wait.until(EC.presence_of_element_located((By.TAG_NAME,"Button")))
+  #  btnMenu = driver.find_element(By.TAG_NAME,"Button")
+  #  btnMenu.click()
+  #  time.sleep(1)
+  #  Btnsombre = driver.find_element(By.XPATH,"//*[@class='v-input v-input--hide-details theme--light v-input--selection-controls v-input--switch']")
+  #  Btnsombre.click()
+  #  time.sleep(1)
+  #  quitter = driver.find_element(By.XPATH,"//*[@class='mx-2 v-btn v-btn--flat v-btn--icon v-btn--round theme--dark v-size--default']")
+  #  quitter.click()
+  #  time.sleep(2)
    y = 1000
    for timer in range(0,8):
       driver.execute_script("window.scrollTo(0, "+str(y)+")")
@@ -33,15 +44,26 @@ def ScrapOuedkniss(wilaya):
       time.sleep(1)     
    html = driver.page_source
    doc = BeautifulSoup(html,"html.parser")
-   content = doc.find_all("a",{"class":"d-flex flex-column flex-grow-1 v-card v-card--link v-sheet o-announ-card-content theme--dark"})
+   content = doc.find_all("a",{"class":"d-flex flex-column flex-grow-1 v-card v-card--link v-sheet o-announ-card-content pb-1 theme--dark"})
    if (len(content)==0):
      return "Erreur lors du Web Scraping vérifiez que votre connexion Internet"
    links=[]
    for link in content:
     links.append("https://ouedkniss.com"+link["href"])
    print(len(links))
-   for link in range(2):
+   for link in range(4):
     driver.get(links[link])
+    # wait = WebDriverWait(driver, 15)
+    # wait.until(EC.presence_of_element_located((By.TAG_NAME,"Button")))
+    # btnMenu = driver.find_element(By.TAG_NAME,"Button")
+    # btnMenu.click()
+    # time.sleep(1)
+    # Btnsombre = driver.find_element(By.XPATH,"//*[@class='v-input--selection-controls__ripple primary--text']")
+    # Btnsombre.click()
+    # Btnsombre.click()
+    # time.sleep(1)
+    # quitter = driver.find_element(By.XPATH,"//*[@class='mx-2 v-btn v-btn--flat v-btn--icon v-btn--round theme--dark v-size--default']")
+    # quitter.click()
     try:
       superficie=0
       wait = WebDriverWait(driver, 15)
@@ -71,7 +93,7 @@ def ScrapOuedkniss(wilaya):
       wilaya_commune = (doc_annonce.find("div",{"py-2 text-wrap text-capitalize d-flex flex-wrap flex-gap-2"})).text.split("-")
       wilaya= wilaya_commune[0][1:-1]
       commune = wilaya_commune[1][1:-1]
-      num_tel = ((doc_annonce.find("a",{"class":"primary v-chip v-chip--clickable v-chip--link v-chip--no-color theme--dark v-size--default"}))["href"])[4:]
+      num_tel = ((doc_annonce.find("a",{"class":"primary v-btn v-btn--depressed v-btn--rounded theme--dark v-size--default"}))["href"])[4:]
     except:
       print("not found")
       continue
@@ -133,7 +155,6 @@ def wilayaFromCommune(commune:str):
   for x in dz_data:
     if (x["commune"].lower() == commune.lower()):
       return x["wilaya"]
-  
    
 
 

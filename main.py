@@ -8,6 +8,7 @@ from dotenv import load_dotenv
 from Web_Scraping_TP_IGL.IGL_scraping import *
 from models import annonces
 from models import messages
+import datetime
 
 load_dotenv()
 app = FastAPI()
@@ -56,6 +57,11 @@ class filtreAnnonce(BaseModel):
     wilaya:str
     commune:str
     typeAnnonce:str
+    
+class message(BaseModel):
+    Message_content:str
+    id_destinataire:int
+    id_emetteur:int
 
 Database = mysql.connector.connect(
     host="localhost",
@@ -71,30 +77,16 @@ def create_annonce(annonce):
  )  
 
 
-@app.get("/")
+@app.post("/")
 async def root():
     return "data from backend"
 
-@app.get("/login") 
-async def login(email_user:str,password:str):
-    cursor.execute("USE testp")
-    commande= "SELECT * FROM users WHERE email='{}'".format(email_user)
-    cursor.execute(commande)
-    myresult=cursor.fetchone()
-    print(myresult[3])
-    if(myresult==None):
-        return "Wrong email"
-    elif (myresult[4] != password):
-        return "Wrong password"
-    else:
-        return "Acces autorisé"
     
 @app.post("/scrap/")
 async def scrap(wilaya:number):
     result = ScrapOuedkniss(wilaya.val)
     for annonce in result:
         try:
-         print(annonce)
         #  annonce["image"]=annonce["image"][] 
          database.insert_row(cursor,"testp","annonces",annonce)
          print("inserted")
@@ -107,7 +99,6 @@ async def scrap(wilaya:number):
 @app.post("/DeposerAnnonce/")
 async def DeposerAnnonce(annoncerecu:annonce):
     print("debut insertion")
-    print(annoncerecu)
     create_annonce(annoncerecu)
     print("fin insertion")
     Database.commit()
@@ -116,10 +107,11 @@ async def DeposerAnnonce(annoncerecu:annonce):
 
 @app.post("/Signup")
 async def CreateUser(newUser:user):
-    database.insert_row(cursor,"testp","users",{"username":newUser.username,"email":newUser.email,"password":newUser.password})
+    database.insert_row(cursor,"testp","users",{"username":newUser.username,"email":newUser.email,"password":newUser.password,"isadmin":0})
     Database.commit()
-    cursor.execute("SELECT * FROM testp.users WHERE email = '{}'".format(newUser.email)) 
-    return cursor.fetchone()
+    cursor.execute("SELECT * FROM testp.users WHERE email = '{}'".format(newUser.email))
+    result = cursor.fetchone()
+    return {"id":result[0],"username":result[1],"email":result[2],"password":result[3],"isadmin":0}
 
 @app.post("/UserExists")
 async def UserExists(newUser:user):
@@ -131,14 +123,14 @@ async def UserExists(newUser:user):
 
 
 @app.post("/getUserbyID")
-async def GetuserByid(User:user):
-    cursor.execute("SELECT id,isadmin FROM testp.users WHERE email = '{}' AND password = '{}'".format(User.email, User.password))
+async def GetIdOfUser(User:user):
+    cursor.execute("SELECT id,isadmin,username FROM testp.users WHERE email = '{}' AND password = '{}'".format(User.email, User.password))
     result = cursor.fetchone()
     return result
 
 
 @app.post("/getAnnonceid")
-async def getannoncebyID(id:number):
+async def getbyID(id:number):
     cursor.execute(f"SELECT * FROM testp.annonces WHERE id_annonce= {id.val}")
     result = cursor.fetchone()
     return result
@@ -156,7 +148,7 @@ async def getAnnoncesbyFilter(filtre:filtreAnnonce):
     cpt = 0
     if ("recherche" in filtres):
         cpt += 1
-        sql += f" AND description LIKE '%{filtre.recherche}%'"
+        sql += f" AND description LIKE '%{(filtre.recherche).lower()}%' "
     if ("typeAnnonce" in filtres):
         cpt += 1
         sql += f" AND type_annonce = '{filtre.typeAnnonce}'"
@@ -169,31 +161,45 @@ async def getAnnoncesbyFilter(filtre:filtreAnnonce):
     sql = sql.replace("AND","",1)
     if (cpt == 0):sql="SELECT * FROM testp.annonces" 
     sql += " LIMIT 0, 50"
-    print(sql)
     cursor.execute(sql)
     result = cursor.fetchall()
     return result
     
-@app.get("/annonces_utilisateur/{id_contact}")
-async def get_all_annonce_of_utilisateur(id_contact:int):
-     return annonces.get_all_annonces_of_utilisateur(id_contact)
- 
-@app.get("/annonce/date")
-def get_annonce_date(date1:str ,date2:str):
-    database.recherche_filter_date(cursor,'website','annonces','date_publication',date1,date2)
-    return cursor.fetchall()
+@app.post("/annonces_utilisateur")
+async def get_all_annonce_of_utilisateur(id_contact:number):
+     cursor.execute(f"SELECT * FROM testp.annonces WHERE id_contact = {id_contact.val}")
+     result = cursor.fetchall()
+     return result
     
-@app.delete("/annonce/{id_annonce}") 
-def delete_data(id_annonce:int):
-    return annonce.delete_annonce(id_annonce)
+@app.post("/Deleteannonce/")
+def delete_data(id_annonce:number):
+    print("hh")
+    cursor.execute(f"DELETE FROM testp.annonces WHERE id_annonce = {id_annonce.val}")
+    Database.commit()
+    return 202
 
-@app.post("/message/") 
-async def message_send(msg:messages.messagerie):
-    return messages.messagerie.send_messages(msg)
+@app.post("/Sendmessage/") 
+async def message_send(msg:message):
+    x = datetime.datetime.now()
+    x = x.strftime('%Y-%m-%d') 
+    sql = f"INSERT INTO messages(`Message_content`,id_emetteur,create_time,id_destinataire) VALUES('{msg.Message_content}',{msg.id_emetteur},'{x}',{msg.id_destinataire});"
+    cursor.execute(sql)
+    Database.commit()
+    return 202
 
-@app.get("/message/{id_receiver}")
-async def messages_utilisateur(id_receiver:int):
-    return messages.messagerie.get_messages(id_receiver)
+@app.post("/GetmessagesUser/")
+async def messages_utilisateur(id_receiver:number):
+    cursor.execute(f"SELECT * FROM testp.messages WHERE id_destinataire ={id_receiver.val}")
+    result = cursor.fetchall()
+    return result
+
+@app.post("/GetAllusers")
+async def Allusers():
+    cursor.execute(f"SELECT * FROM testp.users")
+    result = cursor.fetchall()
+    return result
+
+
     
     
     
